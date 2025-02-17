@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../asset/css/fontawesome.css">
+    <link rel="stylesheet" href="../asset/css/all.css">
+    <title>Line - Up | Files disponibles</title>
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-wrap">
+                <div class="header-item logo">
+                    <img src="logo-img.png" alt="" srcset="">
+                  </div>
+                <div class="header-item">
+                    <div class="sub"><a href="dashboard.html">Dashboard</a></div>
+                    <div class="sub"><a href="create-line.html">Creer Une ligne</a></div>
+                    <div class="sub"><a href="lines.html">File disponibles</a></div>
+                    <div class="sub"><a href="index.html">Deconnexion</a></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container available-lines-container">
+        <div class="container">
+        <div class="page-header">
+            <h1>Files d'attente disponibles</h1>
+        </div>
+
+        <div class="search-section">
+            <div class="search-box">
+              <input
+                type="text"
+                class="search-input"
+                placeholder="Rechercher une ligne..."
+              />
+              <button class="search-button">
+                <i class="fas fa-search"></i> Rechercher
+              </button>
+            </div>
+          </div>
+
+
+        <div class="lines-grid">
+            <!-- File d'attente 1 -->
+            <div class="line-card">
+                <div class="line-card-header">
+                    <span class="line-type">
+                        <i class="fas fa-user-tie"></i> Service Client
+                    </span>
+                    <span class="line-status status-open">Ouvert</span>
+                </div>
+                <div class="line-card-body">
+                    <div class="line-info">
+                        <h3>Service Client Principal</h3>
+                        
+                    </div>
+                    <div class="line-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">12</div>
+                            <div class="stat-label">En attente</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">25</div>
+                            <div class="stat-label">Capacité</div>
+                        </div>
+                    </div>
+                    <div class="line-actions">
+                        <button class="action-button join-button">Rejoindre</button>
+                        <button class="action-button info-button">Détails</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File d'attente 2 -->
+            <div class="line-card">
+                <div class="line-card-header">
+                    <span class="line-type">
+                        <i class="fas fa-hospital"></i> Santé
+                    </span>
+                    <span class="line-status status-full">Complet</span>
+                </div>
+                <div class="line-card-body">
+                    <div class="line-info">
+                        <h3>Consultation Médicale</h3>
+                        
+                    </div>
+                    <div class="line-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">30</div>
+                            <div class="stat-label">En attente</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">30</div>
+                            <div class="stat-label">Capacité</div>
+                        </div>
+                    </div>
+                    <div class="line-actions">
+                        <button class="action-button join-button" disabled>Complet</button>
+                        <button class="action-button info-button">Détails</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File d'attente 3 -->
+            <div class="line-card">
+                <div class="line-card-header">
+                    <span class="line-type">
+                        <i class="fas fa-building"></i> Administration
+                    </span>
+                    <span class="line-status status-closing">Fermeture proche</span>
+                </div>
+                <div class="line-card-body">
+                    <div class="line-info">
+                        <h3>Service des Passeports</h3>
+                        
+                    </div>
+                    <div class="line-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">8</div>
+                            <div class="stat-label">En attente</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">15</div>
+                            <div class="stat-label">Capacité</div>
+                        </div>
+                    </div>
+                    <div class="line-actions">
+                        <button class="action-button join-button">Rejoindre</button>
+                        <button class="action-button info-button">Détails</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    <div class="chat-widget" id="chatWidget">
+        <button class="chat-toggle" id="chatToggle">
+          <i class="fas fa-comment"></i>
+        </button>
+      
+        <div class="chat-container" id="chatContainer">
+          <div class="chat-header">
+            <h3>Support Chat</h3>
+            <button class="close-chat" id="closeChat">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+      
+          <div class="messages-container" id="messagesContainer">
+            <div class="message bot">
+              Bonjour ! Comment puis-je vous aider ?
+            </div>
+          </div>
+      
+          <div class="chat-input-container">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Écrivez votre message...">
+            <button class="send-button" id="sendMessage">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <script>
+      class ChatWidget {
+        constructor() {
+          this.chatToggle = document.getElementById('chatToggle');
+          this.chatContainer = document.getElementById('chatContainer');
+          this.closeChat = document.getElementById('closeChat');
+          this.chatInput = document.getElementById('chatInput');
+          this.sendMessage = document.getElementById('sendMessage');
+          this.messagesContainer = document.getElementById('messagesContainer');
+          
+          this.initializeEventListeners();
+        }
+      
+        initializeEventListeners() {
+          // Ouvrir le chat
+          this.chatToggle.addEventListener('click', () => {
+            this.chatContainer.classList.add('open');
+            this.chatToggle.style.display = 'none';
+          });
+      
+          // Fermer le chat
+          this.closeChat.addEventListener('click', () => {
+            this.chatContainer.classList.remove('open');
+            this.chatToggle.style.display = 'block';
+          });
+      
+          // Envoyer avec le bouton
+          this.sendMessage.addEventListener('click', () => {
+            this.handleSendMessage();
+          });
+      
+          // Envoyer avec Enter
+          this.chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+              this.handleSendMessage();
+            }
+          });
+        }
+      
+        addMessage(content, type) {
+          const messageDiv = document.createElement('div');
+          messageDiv.classList.add('message', type);
+          messageDiv.textContent = content;
+          this.messagesContainer.appendChild(messageDiv);
+          this.scrollToBottom();
+        }
+      
+        async handleSendMessage() {
+          const message = this.chatInput.value.trim();
+          if (!message) return;
+      
+          // Ajouter le message de l'utilisateur
+          this.addMessage(message, 'user');
+          this.chatInput.value = '';
+      
+          // Simuler une réponse du bot (à remplacer par votre API)
+          try {
+            // Simuler un délai de réponse
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Remplacer ceci par votre appel API réel
+            const response = "Merci pour votre message. Un agent vous répondra bientôt.";
+            this.addMessage(response, 'bot');
+          } catch (error) {
+            console.error('Erreur:', error);
+            this.addMessage("Désolé, une erreur est survenue.", 'bot');
+          }
+        }
+      
+        scrollToBottom() {
+          this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
+        }
+      }
+      
+      // Initialiser le widget
+      document.addEventListener('DOMContentLoaded', () => {
+        const chatWidget = new ChatWidget();
+      });
+      </script>
+</body>
+</html>

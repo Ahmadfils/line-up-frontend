@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../asset/css/fontawesome.css">
+    <link rel="stylesheet" href="../asset/css/all.css">
+    <title>Line - Up</title>
+</head>
+<body>
+    
+    <header>
+        <div class="container">
+            <div class="header-wrap">
+                <div class="header-item logo">
+                    <img src="logo-img.png" alt="" srcset="">
+                  </div>
+                <div class="header-item">
+                    <div class="sub"><a href="">Acceuil</a></div>
+                    <div class="sub"><a href="login.html">Connexion</a></div>
+                    <div class="sub"><a href="login.html">Inscription</a></div>
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-wrap">
+                <div class="hero-item">
+
+                    <h1 class="title">En File...</h1>
+                    <p>Une Solution pour toutes vos problèmes de gestion des fils d'attente.</p>
+                    <button onclick="window.location.href = 'login.html'">Inscrivez Vous</button>
+        
+                </div>
+        
+                <div class="hero-item image">
+                    <img src="hero.png" alt="" srcset="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="infos">
+
+        <div class="container">
+            <h1>Profitez de Nos Solutions.</h1>
+            <div class="infos-wrap">
+                <div class="infos-item">
+                    <div class="icon"><i class="fas fa-clock"></i></div>
+                    <p class="description">Optimisez votre temps grâce à notre gestion des files d'attente en temps réel.</p>
+                </div>
+        
+                <div class="infos-item">
+                    <div class="icon"><i class="fas fa-user-check"></i></div>
+                    <p class="description">Améliorez l'expérience client avec des notifications instantanées.</p>
+                </div>
+        
+                <div class="infos-item">
+                    <div class="icon"><i class="fas fa-chart-line"></i></div>
+                    <p class="description">Accédez à des rapports détaillés et analysez les données de fréquentation.</p>
+                </div>
+        
+                <div class="infos-item">
+                    <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+                    <p class="description">Utilisez notre application mobile pour gérer les files d'attente à distance.</p>
+                </div>
+            </div>
+        </div>
+        
+
+    </section>
+
+    <section class="quote">
+        <div class="container">
+            <p class="the-quote"><em>"La meilleure des qualités de service est de faire en sorte que le client ne se rende même pas compte qu'il a attendu."</em></p>
+            <p class="author"><strong>- Richard Branson, Fondateur de Virgin Group</strong></p>
+        </div>
+    </section>
+    
+
+    <section class="action">
+        <div class="container">
+            <div class="action-wrap">
+                <div class="action-text">
+                    <h3 class="action-title">N'attendez Plus ! Profitez de notre Solution Maintenant !</h3>
+                    <p class="action-body">
+                        Connectez-vous et ne manquez plus rien !
+                    </p>
+                </div>
+                <button class="ghost" onclick="window.location.href = 'login.html'">Connexion</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="chat-widget" id="chatWidget">
+        <button class="chat-toggle" id="chatToggle">
+          <i class="fas fa-comment"></i>
+        </button>
+      
+        <div class="chat-container" id="chatContainer">
+          <div class="chat-header">
+            <h3>Support Chat</h3>
+            <button class="close-chat" id="closeChat">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+      
+          <div class="messages-container" id="messagesContainer">
+            <div class="message bot">
+              Bonjour ! Comment puis-je vous aider ?
+            </div>
+          </div>
+      
+          <div class="chat-input-container">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Écrivez votre message...">
+            <button class="send-button" id="sendMessage">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    <footer>
+        <div class="container">
+            <p class="copyright">
+                Copyright &copy; XP Tech LTE 2024
+            </p>
+        </div>
+    </footer>
+
+</body>
+<script src="app.js"></script>
+<script>
+    class ChatWidget {
+      constructor() {
+        this.chatToggle = document.getElementById('chatToggle');
+        this.chatContainer = document.getElementById('chatContainer');
+        this.closeChat = document.getElementById('closeChat');
+        this.chatInput = document.getElementById('chatInput');
+        this.sendMessage = document.getElementById('sendMessage');
+        this.messagesContainer = document.getElementById('messagesContainer');
+        
+        this.initializeEventListeners();
+      }
+    
+      initializeEventListeners() {
+        // Ouvrir le chat
+        this.chatToggle.addEventListener('click', () => {
+          this.chatContainer.classList.add('open');
+          this.chatToggle.style.display = 'none';
+        });
+    
+        // Fermer le chat
+        this.closeChat.addEventListener('click', () => {
+          this.chatContainer.classList.remove('open');
+          this.chatToggle.style.display = 'block';
+        });
+    
+        // Envoyer avec le bouton
+        this.sendMessage.addEventListener('click', () => {
+          this.handleSendMessage();
+        });
+    
+        // Envoyer avec Enter
+        this.chatInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            this.handleSendMessage();
+          }
+        });
+      }
+    
+      addMessage(content, type) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', type);
+        messageDiv.textContent = content;
+        this.messagesContainer.appendChild(messageDiv);
+        this.scrollToBottom();
+      }
+    
+      async handleSendMessage() {
+        const message = this.chatInput.value.trim();
+        if (!message) return;
+    
+        // Ajouter le message de l'utilisateur
+        this.addMessage(message, 'user');
+        this.chatInput.value = '';
+    
+        // Simuler une réponse du bot (à remplacer par votre API)
+        try {
+          // Simuler un délai de réponse
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          
+          // Remplacer ceci par votre appel API réel
+          const response = "Merci pour votre message. Un agent vous répondra bientôt.";
+          this.addMessage(response, 'bot');
+        } catch (error) {
+          console.error('Erreur:', error);
+          this.addMessage("Désolé, une erreur est survenue.", 'bot');
+        }
+      }
+    
+      scrollToBottom() {
+        this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
+      }
+    }
+    
+    // Initialiser le widget
+    document.addEventListener('DOMContentLoaded', () => {
+      const chatWidget = new ChatWidget();
+    });
+    </script>
+
+</html>
